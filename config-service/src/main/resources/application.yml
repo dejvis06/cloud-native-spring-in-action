@@ -10,12 +10,10 @@ server:
 spring:
   application:
     name: config-service
+  profiles.active: native
   cloud:
     config:
       server:
-        git:
-          uri: https://github.com/dejvis06/cloud-native-spring-in-action/tree/master/config-repo
-          default-label: master
-          timeout: 5
-          clone-on-start: true
-          force-pull: true
+        native:
+          searchLocations: file:///${user.dir}/../../../config-repo
+
