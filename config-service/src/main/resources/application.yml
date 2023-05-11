@@ -15,5 +15,5 @@ spring:
     config:
       server:
         native:
-          searchLocations: file:///${user.dir}/../../../config-repo
+          searchLocations: file:///${user.dir}/../config-repo
 
