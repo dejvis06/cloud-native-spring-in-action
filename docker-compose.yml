@@ -31,8 +31,8 @@ services:
       - 8888:8888
       - 9888:9888
     environment:
-      - SPRING_PROFILES_ACTIVE=default
-      - SPRING_CLOUD_CONFIG_SERVER_GIT_URI=https://github.com/PolarBookshop/config-repo
+      - SPRING_PROFILES_ACTIVE=native
+      - SPRING_CLOUD_CONFIG_SERVER_GIT_URI=file:///config-repo
       - SPRING_CLOUD_CONFIG_SERVER_DEFAULT-LABEL=main
       - SPRING_CLOUD_CONFIG_SERVER_CLONE-ON-START=true
       - SPRING_CLOUD_CONFIG_SERVER_FORCE-PULL=true
@@ -41,6 +41,8 @@ services:
       # Buildpacks environment variable to enable debug through a socket on port 9888
       - BPL_DEBUG_ENABLED=true
       - BPL_DEBUG_PORT=9888
+    volumes:
+      - ./config-repo:/config-repo
 
   # Backing Services
 
@@ -52,4 +54,5 @@ services:
     environment:
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=polardb_catalog
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
