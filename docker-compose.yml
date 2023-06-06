@@ -85,6 +85,12 @@ services:
 
   # Backing Services
 
+  polar-redis:
+    image: "redis:7.0"
+    container_name: "polar-redis"
+    ports:
+      - 6379:6379
+
   polar-postgres:
     image: "postgres:14.4"
     container_name: "polar-postgres"
